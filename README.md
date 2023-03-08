@@ -1,6 +1,5 @@
-# Testing Out ThreeJS
-- Highlight each item by clicking it
-- A pop up with info appears (wip)
+# 3D Dashboard with ThreeJS
+
 
 # Getting Started with Create React App
 
