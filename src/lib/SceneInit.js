@@ -93,6 +93,7 @@ export default class SceneInit {
     this.renderer.render(this.scene, this.camera);
   }
 
+  //so the models dont stretch, cos need to update camera
   onWindowResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();

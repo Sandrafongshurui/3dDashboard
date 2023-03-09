@@ -79,11 +79,11 @@
   //canvas in html is resize when window resize
   window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    (camera.aspect = window.innerWidth / window.innerHeight),
+    camera.aspect = window.innerWidth / window.innerHeight,
       //just update the camera
       camera.updateProjectionMatrix();
   });
-  const onMouseClick = (evnt) => {
+  const onMouseClick = (event) => {
     evnt.preventDefault();
     //0,0 bottom left corner,  1,1 at top right corner, mouse is the viewport demensions
     //event is the mouse px posistion base on the window demensions, canvas demension,
