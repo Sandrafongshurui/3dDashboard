@@ -1,7 +1,14 @@
-
 import React, { useEffect, useState } from 'react'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import SceneInit from './lib/SceneInit'
+import Dashboard from './Dashboard'
 
-const Canvas = () => {
+const Canvas = ({ openDashboard }) => {
+  const [content, setContent] = useState(false)
+  // const [popup, setPopup] = useState(false)
+  // const [handleOnClick, setHandleOnClick] = useState(null)
+
   useEffect(() => {
     const test = new SceneInit('myThreeJsCanvas')
     test.initialize()
@@ -10,7 +17,7 @@ const Canvas = () => {
 
     let loadedModel = test.scene
     const glftLoader = new GLTFLoader()
-    const gui = new dat.GUI()
+    // const gui = new dat.GUI()
     const onLoad = (gltf) => {
       console.log(gltf)
       loadedModel.add(gltf.scene)
@@ -58,7 +65,6 @@ const Canvas = () => {
     const onMouseDown = () => {
       drag = false
     }
-
     const onMouseClick = (event) => {
       // calculate pointer position in normalized device coordinates
       // (-1 to +1) for both components
@@ -78,18 +84,14 @@ const Canvas = () => {
           //cehck the color
           console.log('click')
           //open the pop up
-          // console.log(popup)
+          // console.log(popup
+
           setContent((content) => {
             // call set method to get the value
             return !content // set the same value, so nothing will change
             // or a different value, depends on your use case
           })
-          //   setActivePoint(currentActivePoint => { // call set method to get the value
-          //     console.log(currentActivePoint);
-          //     return currentActivePoint;       // set the same value, so nothing will change
-          //                                      // or a different value, depends on your use case
-          //  });
-
+          // handleOnClick()
           if (instersectObjs[intersects[0].object.name] !== undefined) {
             if (instersectObjs[intersects[0].object.name].isClick) {
               console.log('activate original')
@@ -132,9 +134,12 @@ const Canvas = () => {
     window.addEventListener('click', onMouseClick)
     console.log('useeffect')
   }, [])
+  console.log(content)
   return (
     <div>
       <canvas id="myThreeJsCanvas" />
+      {!content && <Dashboard text={'A'} />}
+      {/* {content ? <Dashboard text={"B"}/> : <Dashboard text={"C"}/> } */}
     </div>
   )
 }
